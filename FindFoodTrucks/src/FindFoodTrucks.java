@@ -37,14 +37,15 @@ public class FindFoodTrucks {
 			while ((line = br.readLine()) != null) {
 				// Splitting the row based on a delimiter
 				String[] truck = line.split(FoodTruckConstants.delimiter);
+				// Converting the row to FoodTruck object
+				FoodTruck foodTruck = createFoodTruck(truck);
 				// Check for the latitude and longitude of the truck
-				if (truck[14].contains(latitude) && truck[15].contains(longitude)) {
-					// Converting the row to FoodTruck object
-					FoodTruck foodTruck = createFoodTruck(truck);
+				if (foodTruck.getLatitude().contains(latitude) && foodTruck.getLongitude().contains(longitude)) {
 					// Add the foodTruck to the output list
 					listFoodTruck.add(foodTruck);
 				}
 			}
+			
 			br.close();
 
 		} catch (IOException e) {
